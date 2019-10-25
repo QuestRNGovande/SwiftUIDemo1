@@ -24,7 +24,7 @@ struct MainView: View {
                     
                     List {
                         ForEach(self.moviesviewModel.moviesData!) { movie in
-                            NavigationLink(destination: MovieDetailsView()
+                            NavigationLink(destination: MovieDetailsView(movieDetails: movie)
                             ) {
                                 VerticalMovieView(movie: movie)
                                     .shadow(color: Color.gray.opacity(0.5), radius: 10.0, x: 2, y: 2)
@@ -36,6 +36,7 @@ struct MainView: View {
                 }
                 .padding(.leading, 5)
                 .padding(.trailing, 5)
+                .navigationBarHidden(true)
                 .navigationBarTitle(Text(self.moviesviewModel.username))
                 
                 
