@@ -17,7 +17,6 @@ struct MainView: View {
             ZStack {
                 VStack(alignment: .leading){
                     UpcommingMovieView(moviesviewModel: self.moviesviewModel)
-                    
                     Text("Play Now")
                         .font(.custom("TimesNewRomanPS-BoldMT", size: 20.0))
                         .padding(.leading, 10)

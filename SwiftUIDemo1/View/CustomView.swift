@@ -15,10 +15,12 @@ struct HorizontalView: View {
     var body: some View {
         VStack {
             Image(uiImage: UIImage(data: movie.imageData!)!)
+                .renderingMode(.original)
                 .resizable().frame(width:110, height: 180)
                 .border(Color.gray.opacity(0.5), width: 0.5)
                 .cornerRadius(8)
-            Text(movie.title!).font(.custom("TimesNewRomanPS-BoldMT", size: 12.0)).lineLimit(2)
+                
+            Text(movie.title!).font(.custom("TimesNewRomanPS-BoldMT", size: 12.0)).lineLimit(2).foregroundColor(.primary)
         }.frame(width: 120)
         
     }
@@ -43,6 +45,12 @@ struct VerticalMovieView:  View {
                     Text(movie.releaseDate!)
                         .font(.custom("TimesNewRomanPS", size: 16.0))
                         .foregroundColor(Color.gray.opacity(0.8))
+                    
+                    Button.init(action: {
+                        print("Like.....")
+                    }) {
+                    Text("Like")
+                    }
                 }
                 
             }
@@ -65,7 +73,11 @@ struct UpcommingMovieView: View {
             ScrollView(.horizontal, showsIndicators: false){
                 HStack(spacing:10) {
                     ForEach(self.moviesviewModel.moviesData!) { movie in
-                        HorizontalView(movie: movie)
+                        
+                        NavigationLink(destination: MovieDetailsView( movieDetails: movie)) {
+                            HorizontalView(movie: movie)
+                        }
+                        
                     }
                 }
                 .padding(.leading, 5)
